@@ -2,9 +2,12 @@
 
 Unterlagen für Azure Professional Schulungen:
 
-## Session 1
+## Session 1 - Automatisierung
+ARM Templates:
 
-## Session 2 - Automatisierung
+Powershell Script:
+
+## Session 2
 
 
 ## Session 3
