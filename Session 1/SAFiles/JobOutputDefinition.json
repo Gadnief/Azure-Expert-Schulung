@@ -1,0 +1,28 @@
+{
+    "properties":  {
+                       "datasource":  {
+                                          "type":  "Microsoft.Storage/Blob",
+                                          "properties":  {
+                                                             "storageAccounts":  [
+                                                                                     {
+                                                                                         "accountName":  "msaskti2009",
+                                                                                         "accountKey":  "0An8h9bOS28f0J8jflD8vwaPOautTWOkbpGiZftEMaNWTVRzWIz6IIFTwXggfQGpQXmSr9FBDkKdEt1DKDZIfA=="
+                                                                                     }
+                                                                                 ],
+                                                             "container":  "msascti2009",
+                                                             "pathPattern":  "output/",
+                                                             "dateFormat":  "yyyy/MM/dd",
+                                                             "timeFormat":  "HH"
+                                                         }
+                                      },
+                       "serialization":  {
+                                             "type":  "Json",
+                                             "properties":  {
+                                                                "encoding":  "UTF8",
+                                                                "format":  "LineSeparated"
+                                                            }
+                                         }
+                   },
+    "name":  "MyBlobOutput",
+    "type":  "Microsoft.StreamAnalytics/streamingjobs/outputs"
+}

@@ -1,0 +1,22 @@
+{
+    "name":  "Hub",
+    "type":  "Microsoft.StreamAnalytics/streamingjobs/inputs",
+    "properties":  {
+                       "datasource":  {
+                                          "properties":  {
+                                                             "iotHubNamespace":  "IH-Edge-TI2009",
+                                                             "sharedAccessPolicyKey":  "GSEdLb7NEvtKMqI/8gnJW2xXV5cKUdqupUd3rH9rMr8=",
+                                                             "sharedAccessPolicyName":  "iothubowner",
+                                                             "endpoint":  "messages/events"
+                                                         },
+                                          "type":  "Microsoft.Devices/IotHubs"
+                                      },
+                       "serialization":  {
+                                             "properties":  {
+                                                                "encoding":  "UTF8"
+                                                            },
+                                             "type":  "Json"
+                                         },
+                       "type":  "Stream"
+                   }
+}

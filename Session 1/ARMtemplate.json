@@ -1,0 +1,162 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "IotHubs_IH_MSA_name": {
+            "defaultValue": "IH-MSA-XX",
+            "type": "String"
+        },
+        "storageAccounts_skmsa_name": {
+            "defaultValue": "skmsaxx",
+            "type": "String"
+        },
+        "streamingjobs_SA_MSA_name": {
+            "defaultValue": "SA-MSA-XX",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalisiert aus Ressource \"/subscriptions/58f20f33-d144-4f8b-9e12-597bdea1cc1b/resourceGroups/RG-Schulung-Basic/providers/Microsoft.Devices/IotHubs/IH-MSA-DF\".",
+            "type": "Microsoft.Devices/IotHubs",
+            "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "capacity": 1
+            },
+            "name": "[parameters('IotHubs_IH_MSA_name')]",
+            "apiVersion": "2018-01-22",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "operationsMonitoringProperties": {
+                    "events": {
+                        "None": "None",
+                        "Connections": "None",
+                        "DeviceTelemetry": "None",
+                        "C2DCommands": "None",
+                        "DeviceIdentityOperations": "None",
+                        "FileUploadOperations": "None",
+                        "Routes": "None"
+                    }
+                },
+                "ipFilterRules": [],
+                "eventHubEndpoints": {
+                    "events": {
+                        "retentionTimeInDays": 1,
+                        "partitionCount": 4,
+                        "partitionIds": [
+                            "0",
+                            "1",
+                            "2",
+                            "3"
+                        ]
+                    },
+                    "operationsMonitoringEvents": {
+                        "retentionTimeInDays": 1,
+                        "partitionCount": 4,
+                        "partitionIds": [
+                            "0",
+                            "1",
+                            "2",
+                            "3"
+                        ]
+                    }
+                },
+                "routing": {
+                    "endpoints": {
+                        "serviceBusQueues": [],
+                        "serviceBusTopics": [],
+                        "eventHubs": []
+                    },
+                    "routes": [],
+                    "fallbackRoute": {
+                        "name": "$fallback",
+                        "source": "DeviceMessages",
+                        "condition": "true",
+                        "endpointNames": [
+                            "events"
+                        ],
+                        "isEnabled": true
+                    }
+                },
+                "storageEndpoints": {
+                    "$default": {
+                        "sasTtlAsIso8601": "PT1H",
+                        "connectionString": "",
+                        "containerName": ""
+                    }
+                },
+                "enableFileUploadNotifications": false,
+                "cloudToDevice": {
+                    "maxDeliveryCount": 10,
+                    "defaultTtlAsIso8601": "PT1H",
+                    "feedback": {
+                        "lockDurationAsIso8601": "PT1M",
+                        "ttlAsIso8601": "PT1H",
+                        "maxDeliveryCount": 10
+                    }
+                },
+                "features": "None"
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalisiert aus Ressource \"/subscriptions/58f20f33-d144-4f8b-9e12-597bdea1cc1b/resourceGroups/RG-Schulung-Basic/providers/Microsoft.Storage/storageAccounts/skmsadf\".",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_skmsa_name')]",
+            "apiVersion": "2017-10-01",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalisiert aus Ressource \"/subscriptions/58f20f33-d144-4f8b-9e12-597bdea1cc1b/resourceGroups/RG-Schulung-Basic/providers/Microsoft.StreamAnalytics/streamingjobs/SA-MSA-DF\".",
+            "type": "Microsoft.StreamAnalytics/streamingjobs",
+            "name": "[parameters('streamingjobs_SA_MSA_name')]",
+            "apiVersion": "2016-03-01",
+            "location": "West Europe",
+            "scale": null,
+            "properties": {
+                "sku": {
+                    "name": "Standard"
+                },
+                "eventsOutOfOrderPolicy": "Adjust",
+                "outputErrorPolicy": "Stop",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "dataLocale": "en-US",
+                "compatibilityLevel": "1.0"
+            },
+            "dependsOn": []
+        }
+    ]
+}
