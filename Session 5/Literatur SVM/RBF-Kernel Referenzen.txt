@@ -1,0 +1,5 @@
+https://link.springer.com/article/10.1007/s004500050135
+
+http://swb.bsz-bw.de/DB=2.1//PPNSET?PPN=406568758&COOKIE=U998,Pbszgast,I17,B0728+,SY,NRecherche-DB,D2.1,E46059dc0-0,A,H,R193.197.31.15,FY
+
+http://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html
