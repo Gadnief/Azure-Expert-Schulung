@@ -17,6 +17,8 @@ Vorlagen und Lösungen für die Automatisierungsskripe:
 ## Session 3
 Code für Datengenerator
 
+[Datenerzeugung](https://github.com/Gadnief/Azure-Expert-Schulung/tree/master/Session%203/Datenerzeugung/IoTEdgeSolution00)
+
 [Datengenerator komplett](https://github.com/Gadnief/Azure-Expert-Schulung/tree/master/Session%203/EdgeSolutionDmAndGenerator)
 
 ## Session 4
