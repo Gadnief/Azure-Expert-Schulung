@@ -9,6 +9,7 @@ namespace Telemetriedata
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Azure.Devices.Client;
+    using Newtonsoft.Json;
 
     class Program
     {
@@ -68,7 +69,7 @@ namespace Telemetriedata
             //Register Direct Method for Emergency
             await ioTHubModuleClient.SetMethodHandlerAsync("TurnOn",TurnOn,null);
             await ioTHubModuleClient.SetMethodHandlerAsync("TurnOff",TurnOff,null);
-            
+
             return ioTHubModuleClient;
         }
 
