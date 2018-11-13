@@ -32,7 +32,8 @@ New-AzureRmResourceGroup -Name $resourceGroup -Location $location
 New-AzureRmIotHub -ResourceGroupName $resourceGroup -Name $iHName -SkuName "S1" -Units 1 -Location $location
 
 #Create Device (new Command)
-az iot device create --hub-name $iHName --device-id $deviceName
+az iot hub device-identity create --device-id $deviceName --hub-name $iHName
+
 
 #Create Storage Account
 $storageAccount = New-AzureRmStorageAccount -ResourceGroupName $resourceGroup -Name $storageAccountName -Location $location -SkuName "Standard_LRS" -Kind "Storage"

@@ -5,7 +5,7 @@
                        "datasource":  {
                                           "properties":  {
                                                              "iotHubNamespace":  "IH-Edge-TI2009",
-                                                             "sharedAccessPolicyKey":  "GSEdLb7NEvtKMqI/8gnJW2xXV5cKUdqupUd3rH9rMr8=",
+                                                             "sharedAccessPolicyKey":  "XbjSj/Cg5iHzgL8EEsjwonjYKNZES9FLB4yYggG0DU0=",
                                                              "sharedAccessPolicyName":  "iothubowner",
                                                              "endpoint":  "messages/events"
                                                          },

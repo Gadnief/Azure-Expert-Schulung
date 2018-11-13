@@ -8,7 +8,8 @@ namespace Telemetriedata
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.Azure.Devices.Client;
+    using Microsoft.Azure.Devices.Client; 
+    using Microsoft.Azure.Devices.Shared;
     using Newtonsoft.Json;
 
     class Program
@@ -107,6 +108,10 @@ namespace Telemetriedata
                     }
                      messageID++;                          
 
+                    //Moduletwin Update
+                    TwinCollection reportedProps = new TwinCollection();
+                    reportedProps["messageID"] = data;
+
                     //Send Data to output1
                     var jsonData = JsonConvert.SerializeObject(data);
                     if(service==true) Console.WriteLine($"SUBMIT: {jsonData}");
@@ -120,7 +125,9 @@ namespace Telemetriedata
                         Console.WriteLine("Error sending message: " + e);
                     }
                     
-                    await Task.Delay(1000);                       
+                    await Task.Delay(1000);    
+
+                     moduleClient.SetDesiredPropertyUpdateCallbackAsync(OnDesiredPropertyChanged, null).Wait();                   
                 } 
                 else
                 {
@@ -162,6 +169,24 @@ namespace Telemetriedata
             generating = true;
             return new MethodResponse(200);
         }        
+
+        /// <summary>
+        /// Handles changes in device twin
+        /// </summary>
+        private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
+        {
+            var moduleClient = userContext as ModuleClient;
+
+            string inputWind = JsonConvert.SerializeObject(desiredProperties, Formatting.Indented);
+            Wind wind = JsonConvert.DeserializeObject<Wind>(inputWind);
+
+            Console.WriteLine("windspeed");
+            speed = Int32.Parse(JsonConvert.SerializeObject(wind.newWindspeed));
+            Console.WriteLine(speed);
+            TwinCollection reportedProperties = new TwinCollection();
+
+            await moduleClient.UpdateReportedPropertiesAsync(reportedProperties).ConfigureAwait(false);
+        }
 
     }
 }
