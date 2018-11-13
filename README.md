@@ -26,3 +26,5 @@ Code für Datengenerator
 ## Session 5
 
 ## Session 6
+crschulungedge.azurecr.io
+=9EDS16Nk05ktrdtN4PQs5lAE7LvuYEW
